@@ -12,10 +12,14 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors({
-    origin: ['https://real-time-collaborative-whiteboard-three.vercel.app/','https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app/','https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app/'],
+    origin: ['https://real-time-collaborative-whiteboard-three.vercel.app',
+    'https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app',
+    'https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app'
+    ],
     methods: ['GET','POST','PUT','DELETE','OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+app.options("*", cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -32,11 +36,14 @@ const PORT = process.env.PORT || 3030;
 
 // Socket.io for realtime collaboration
 const io = new Server(server, {
-    cors: {
-        origin: [/^http:\/\/localhost:\d+$/],
-        methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-    }
+    origin: [
+        "https://real-time-collaborative-whiteboard-three.vercel.app",
+        "https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app",
+        "https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app"
+    ],
+    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 });
 
 io.use((socket, next) => {
