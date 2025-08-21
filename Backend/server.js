@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors({
-    origin: [/^http:\/\/localhost:\d+$/],
+    origin: ['https://real-time-collaborative-whiteboard-three.vercel.app/','https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app/','https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app/'],
     methods: ['GET','POST','PUT','DELETE','OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
