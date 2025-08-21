@@ -11,15 +11,7 @@ require('dotenv').config();
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors({
-    origin: ['https://real-time-collaborative-whiteboard-three.vercel.app',
-    'https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app',
-    'https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app'
-    ],
-    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-app.options("*", cors());
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -41,7 +33,7 @@ const io = new Server(server, {
         "https://real-time-collaborative-whiteboard-mtnvdsks-projects.vercel.app",
         "https://real-time-collaborative-whiteboard-git-main-mtnvdsks-projects.vercel.app"
     ],
-    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+    methods: ['GET','POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 });
